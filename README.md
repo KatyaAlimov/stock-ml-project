@@ -8,10 +8,6 @@ We utilized a dataset sourced from **[Kaggle](https://www.kaggle.com/datasets/as
 * **Processing:** 80/20 chronological train-test split with Standard Scaling and outlier clipping (±20%).
 
 ## 🧠 Machine Learning Models
-Following the **[Course Requirements](file:///C:/Users/alimok1/Downloads/project.pdf)**, we implemented and compared three distinct methods:
-1. **Linear Regression (Baseline):** Established the floor for predictive performance.
-2. **k-Nearest Neighbors (KNN):** A non-linear instance-based comparison.
-3. **Neural Network (MLP):** Our main model featuring ReLU activation, Dropout (0.2), and Early Stopping.
 
 ## 🏆 Key Results
 | Model | Mean Squared Error (MSE) | R² Score |
