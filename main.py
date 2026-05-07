@@ -58,6 +58,22 @@ r2 = r2_score(y_test, y_pred)
 print(f"Linear Regression MSE: {mse}")
 print(f"Linear Regression R^2 Score: {r2}")
 
+#visualization of the linear regression results
+plt.figure(figsize=(14, 7))
+# select the final 100 timesteps for clear, readable visualization
+data_slice = df['Date'].iloc[-100:]
+plt.plot(data_slice, y_test.iloc[-100:], label='Actual Price', color='blue', linewidth=2)
+plt.plot(data_slice, y_pred[-100:], label='Linear Regression Predictions', color='orange', linestyle='--')
+# formatting the final plot
+plt.title('Stock Price Prediction - Linear Regression Baseline')
+plt.xlabel('Date')
+plt.ylabel('Price ($)')
+plt.legend()
+plt.xticks(rotation=45)
+plt.tight_layout()
+# Display the plot
+plt.show()
+
 
 print("\nParameter Analysis for KNN Regression")
 # Testing different values of K for KNN regression
@@ -214,7 +230,24 @@ print("\n" + "="*40)
 print("LINEAR REGRESSION: DYNAMIC FEATURES")
 print(f"Features used: {list(selected_cols)}")
 print(f"R2 Score:      {lin_fs_r2:.4f}")
+print(f"MSE: {mean_squared_error(y_test_lin, lin_fs_preds):.4f}")
 print("="*40)
+
+#vizualization of the linear regression results with selected features
+plt.figure(figsize=(15, 6))
+test_dates = df_comperison['Date'].iloc[-100:]
+actual_returns = y_test_lin.iloc[-100:]
+predicted_returns = lin_fs_preds[-100:]
+plt.plot(test_dates, actual_returns, label='Actual 5-Day Return', color='#1f77b4', alpha=0.7, linewidth=2)
+plt.plot(test_dates, predicted_returns, label='Linear Regression Predicted Return', color='#ff7f0e', linestyle='--', linewidth=2)
+plt.axhline(y=0, color='black', linestyle='-', alpha=0.3)
+plt.title('Linear Regression: Actual vs. Predicted Returns (Post-Feature Selection)')
+plt.xlabel('Date')
+plt.ylabel('Return % (Decimal Form)')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.xticks(rotation=45)
+plt.tight_layout()
 
 # 1. Prepare data with RF Selected Features
 selected_features = ['Low', 'Close', 'Volume', 'Price_Change', 'Volatility']
